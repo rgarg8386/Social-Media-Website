@@ -3,9 +3,19 @@ const User = require('../models/user');
 //exports function use krke apa ehnu kisi vi file ch use kr sakde as aa object 
 
 module.exports.profile = function(req, res) {
-        return res.render('users_profile', {
-            title: "Profile"
-        });
+        if (req.cookies.user_id) {
+            User.findById(req.cookies.user_id, function(err, user) {
+                if (user) {
+                    return res.render('users_profile', {
+                        title: "Profile",
+                        user: user
+                    });
+                }
+                return res.redirect('users/sign-in');
+            });
+        } else {
+            return res.redirect('users/sign-in');
+        }
     }
     //module is optional
 exports.posts = function(req, res) {
@@ -39,6 +49,7 @@ module.exports.create = (req, res) => {
                     console.log("error in creating user while signing up");
                     return;
                 }
+                console.log(user);
                 return res.redirect('/users/sign-in');
             });
         } else {
@@ -46,6 +57,27 @@ module.exports.create = (req, res) => {
         }
     });
 }
-module.exports.createSessions = (req, res) => {
+module.exports.createSession = (req, res) => {
+    //steps to authenticate
+    //find the user
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if (err) {
+            console.log("error in creating user while signing up");
+            return;
+        }
+        //handle user not found
+        if (user) {
+            //handle password dont match
+            if (user.password != req.body.password) {
+                return res.redirect('back');
+            }
+            //handle session creation
 
+            res.cookie('user_id', user._id);
+            return res.redirect('/users/profile');
+        } else {
+            //handle user not found
+            return res.redirect('back');
+        }
+    });
 }

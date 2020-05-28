@@ -5,10 +5,10 @@ const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 app.use(express.static('./assets'));
-app.use(express.urlencoded());
-app.use(cookieParser());
 app.use(expressLayouts);
 const signUp = require('./models/user');
+app.use(express.urlencoded());
+app.use(cookieParser());
 //eh link tag te script tag nu head te body ch paadu 
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
