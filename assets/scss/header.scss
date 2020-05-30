@@ -1,0 +1,23 @@
+#header {
+    display: flex;
+    justify-content: space-between;
+    background: blue;
+    color: white;
+    font-family: Arial;
+    font-weight: 700;
+    align-items: baseline;
+    h1 {
+        margin-left: 1%;
+    }
+    ul {
+        font-size: 1.2rem;
+        list-style: none;
+        display: flex;
+        width: 13%;
+        justify-content: space-around;
+    }
+    li a {
+        color: white;
+        text-decoration: none;
+    }
+}

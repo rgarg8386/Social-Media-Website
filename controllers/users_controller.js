@@ -3,15 +3,22 @@ const User = require('../models/user');
 //exports function use krke apa ehnu kisi vi file ch use kr sakde as aa object 
 
 module.exports.profile = function(req, res) {
+    User.findById(req.params.id, (err, user) => {
         return res.render('users_profile', {
-            title: "Profile"
+            title: "Profile",
+            profile_user: user
         });
-    }
-    //module is optional
-exports.posts = function(req, res) {
-    return res.render('users_posts', {
-        title: "Posts"
     });
+}
+
+module.exports.update = (req, res) => {
+    if (req.user.id == req.params.id) {
+        User.findByIdAndUpdate(req.params.id, req.body, (err, user) => {
+            return res.redirect('back');
+        });
+    } else {
+        return res.status(401).send('Unauthorized');
+    }
 }
 module.exports.signUp = function(req, res) {
     if (req.isAuthenticated()) {

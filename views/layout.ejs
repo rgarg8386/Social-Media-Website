@@ -10,9 +10,11 @@
 
 <body>
     <%- include('_header'); %>
-        <%- body %>
-            <%- include('_footer'); %>
-                <%- style %>
+        <main id="layout-main">
+            <%- body %>
+        </main>
+        <%- include('_footer'); %>
+            <%- script %>
 </body>
 
 </html>
