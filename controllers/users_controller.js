@@ -1,5 +1,6 @@
 const User = require('../models/user');
-
+const fs = require('fs');
+const path = require('path');
 //exports function use krke apa ehnu kisi vi file ch use kr sakde as aa object 
 
 module.exports.profile = function(req, res) {
@@ -11,11 +12,32 @@ module.exports.profile = function(req, res) {
     });
 }
 
-module.exports.update = (req, res) => {
+module.exports.update = async function(req, res) {
     if (req.user.id == req.params.id) {
-        User.findByIdAndUpdate(req.params.id, req.body, (err, user) => {
+        try {
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function(err) {
+                if (err) {
+                    console.log("****Multer Error:", err);
+                }
+                user.name = req.body.name;
+                user.email = req.body.email;
+                if (req.file) {
+                    console.log(user.avatar);
+                    if (user.avatar) {
+                        console.log(user.avatar);
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                console.log(user.avatar);
+                user.save();
+                return res.redirect("back");
+            });
+        } catch (err) {
+            req.flash('error', err);
             return res.redirect('back');
-        });
+        }
     } else {
         return res.status(401).send('Unauthorized');
     }
@@ -60,10 +82,12 @@ module.exports.create = (req, res) => {
     });
 }
 module.exports.createSession = (req, res) => {
+    req.flash('success', 'Logged in Suceesfuly');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req, res) {
     req.logout();
+    req.flash('success', 'Logged out Suceesfuly');
     return res.redirect('/');
 }

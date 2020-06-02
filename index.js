@@ -10,7 +10,8 @@ const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
 const MongoStore = require('connect-mongo')(session);
 const sanssMiddleware = require('node-sass-middleware');
-
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 app.use(sanssMiddleware({
     src: './assets/scss',
     dest: './assets/css',
@@ -18,10 +19,12 @@ app.use(sanssMiddleware({
     outputStyle: 'extended',
     prefix: '/css'
 }));
-app.use(express.static('./assets'));
 app.use(express.urlencoded());
 app.use(cookieParser());
+app.use(express.static('./assets'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(expressLayouts);
+//make the uploads path avialabe to  the browser
 const signUp = require('./models/user');
 //eh link tag te script tag nu head te body ch paadu 
 app.set('layout extractStyles', true);
@@ -49,6 +52,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMware.setFlash);
 //use express routers
 app.use('/', require('./routes'));
 app.listen(port, function(err) {

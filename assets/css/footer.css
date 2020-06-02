@@ -1,10 +1,11 @@
-div {
+#footer {
   display: flex;
   font-family: Arial;
   font-weight: 300;
-  font-size: 0.9rem; }
-  div ul {
+  font-size: 0.9rem;
+  background: grey; }
+  #footer ul {
     list-style: none; }
-  div li a {
+  #footer li a {
     font-weight: 700;
     font-size: 1.4rem; }

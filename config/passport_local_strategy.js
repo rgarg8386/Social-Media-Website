@@ -3,17 +3,18 @@ const LocalStrategy = require('passport-local').Strategy;
 //authentication using passport
 const User = require('../models/user');
 passport.use(new LocalStrategy({
-        usernameField: 'email'
+        usernameField: 'email',
+        passReqToCallback: true
     },
 
-    function(email, password, done) {
+    function(req, email, password, done) {
         User.findOne({ email: email }, (err, user) => {
             if (err) {
-                console.log('Error in finding user --> Passport');
+                req.flash('error', "err");
                 return done(err);
             }
             if (!user || user.password != password) {
-                console.log('Invaid Username/Password');
+                req.flash('success', 'Invaid Username/Password');
                 return done(null, false);
             }
             return done(null, user);
