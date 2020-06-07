@@ -78,7 +78,6 @@
                 url: '/comments/create',
                 data: newCommentForm.serialize(),
                 success: function(data) {
-                    console.log(data);
                     let newcomment = newCommentDom(data.data.comment);
                     $('.post-comments-list>ul').prepend(newcomment);
                     deleteComment($(' .delete-comment-button', newcomment));
