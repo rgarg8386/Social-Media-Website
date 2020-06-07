@@ -23,14 +23,8 @@ module.exports.update = async function(req, res) {
                 user.name = req.body.name;
                 user.email = req.body.email;
                 if (req.file) {
-                    console.log(user.avatar);
-                    if (user.avatar) {
-                        console.log(user.avatar);
-                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
-                    }
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
-                console.log(user.avatar);
                 user.save();
                 return res.redirect("back");
             });
@@ -59,6 +53,7 @@ module.exports.signIn = function(req, res) {
         title: "Sign In"
     });
 }
+
 module.exports.create = (req, res) => {
     if (req.body.password != req.body.confirm_password) {
         return res.redirect("back");
