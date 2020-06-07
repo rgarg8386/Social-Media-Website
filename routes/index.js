@@ -6,4 +6,5 @@ router.get('/', homeController.home); // eh object use kr reha export.home aala
 router.use('/users', require('./users'));
 router.use('/posts', require('./posts'));
 router.use('/comments', require('./comments'));
+router.use('/api', require('./api'));
 module.exports = router;
