@@ -25,6 +25,7 @@ module.exports.update = async function(req, res) {
                 if (req.file) {
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
+
                 user.save();
                 return res.redirect("back");
             });
