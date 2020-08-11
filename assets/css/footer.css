@@ -1,11 +1,23 @@
 #footer {
-  display: flex;
-  font-family: Arial;
-  font-weight: 300;
-  font-size: 0.9rem;
-  background: grey; }
+  background: linear-gradient(blue, skyblue);
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  left: 0px;
+  height: 5rem;
+  color: white; }
+  #footer h1 {
+    display: flex;
+    margin-left: 10px; }
   #footer ul {
-    list-style: none; }
-  #footer li a {
-    font-weight: 700;
-    font-size: 1.4rem; }
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -55px; }
+    #footer ul li {
+      font-size: 1.8rem;
+      margin-right: 20px;
+      list-style: none; }
+      #footer ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 900; }

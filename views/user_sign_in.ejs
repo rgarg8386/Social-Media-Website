@@ -1,9 +1,8 @@
-<form action="/users/create-session" method="POST">
-    <input id="email" type="text" name="email" placeholder="Email" required>
-    <input id="password" type="password" name="password" placeholder="password" required>
-    <button type="submit">Sign In</button>
+<link rel="stylesheet" type="text/css" href="/css/sign-in.css">
+<form id="sign-in" action="/users/create-session" method="POST">
+    <label>User Login</label>
+    <i class=' fa fa-user ' aria-hidden='true'></i><input id="email" type="text" name="email" placeholder="Email" required>
+    <i class=' fa fa-lock ' aria-hidden='true'></i><input id="password" type="password" name="password" placeholder="password" required>
+    <input id="submit" type="submit" value="Log In">
+    <a href="">Forgot Username/Password</a>
 </form>
-
-<p>
-    <a href="/users/auth/google">Google Sign In/Sign Up</a>
-</p>

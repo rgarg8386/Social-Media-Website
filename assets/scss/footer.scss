@@ -1,14 +1,28 @@
 #footer {
-    display: flex;
-    font-family: Arial;
-    font-weight: 300;
-    font-size: 0.9rem;
-    background: grey;
-    ul {
-        list-style: none;
+    background: linear-gradient( blue, skyblue);
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    height: 5rem;
+    color: white;
+    h1 {
+        display: flex;
+        margin-left: 10px;
     }
-    li a {
-        font-weight: 700;
-        font-size: 1.4rem;
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -55px;
+        li {
+            font-size: 1.8rem;
+            margin-right: 20px;
+            list-style: none;
+            a {
+                color: white;
+                text-decoration: none;
+                font-weight: 900;
+            }
+        }
     }
 }

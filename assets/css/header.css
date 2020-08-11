@@ -1,19 +1,23 @@
 #header {
-  display: flex;
-  justify-content: space-between;
-  background: blue;
-  color: white;
-  font-family: Arial;
-  font-weight: 700;
-  align-items: baseline; }
+  background: linear-gradient(blue, skyblue);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  height: 5rem;
+  color: white; }
   #header h1 {
-    margin-left: 1%; }
-  #header ul {
-    font-size: 1.2rem;
-    list-style: none;
     display: flex;
-    width: 13%;
-    justify-content: space-around; }
-  #header li a {
-    color: white;
-    text-decoration: none; }
+    margin-left: 10px; }
+  #header ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -55px; }
+    #header ul li {
+      font-size: 1.8rem;
+      margin-right: 20px;
+      list-style: none; }
+      #header ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 900; }
