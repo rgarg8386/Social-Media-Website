@@ -41,7 +41,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(session({
     name: 'codeial',
-    //todo change the secret befor deployment in production mode
+    //todo change the secret before deployment in production mode
     secret: env.session_cookie_key,
     saveUninitialized: false,
     resave: false,
